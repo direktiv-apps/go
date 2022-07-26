@@ -19,15 +19,15 @@ import (
 // swagger:model postOKBody
 type PostOKBody struct {
 
-	// go
-	Go []*PostOKBodyGoItems `json:"go"`
+	// golang
+	Golang []*PostOKBodyGolangItems `json:"golang"`
 }
 
 // Validate validates this post o k body
 func (m *PostOKBody) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateGo(formats); err != nil {
+	if err := m.validateGolang(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -37,22 +37,22 @@ func (m *PostOKBody) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *PostOKBody) validateGo(formats strfmt.Registry) error {
-	if swag.IsZero(m.Go) { // not required
+func (m *PostOKBody) validateGolang(formats strfmt.Registry) error {
+	if swag.IsZero(m.Golang) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.Go); i++ {
-		if swag.IsZero(m.Go[i]) { // not required
+	for i := 0; i < len(m.Golang); i++ {
+		if swag.IsZero(m.Golang[i]) { // not required
 			continue
 		}
 
-		if m.Go[i] != nil {
-			if err := m.Go[i].Validate(formats); err != nil {
+		if m.Golang[i] != nil {
+			if err := m.Golang[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("go" + "." + strconv.Itoa(i))
+					return ve.ValidateName("golang" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
-					return ce.ValidateName("go" + "." + strconv.Itoa(i))
+					return ce.ValidateName("golang" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -67,7 +67,7 @@ func (m *PostOKBody) validateGo(formats strfmt.Registry) error {
 func (m *PostOKBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateGo(ctx, formats); err != nil {
+	if err := m.contextValidateGolang(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -77,16 +77,16 @@ func (m *PostOKBody) ContextValidate(ctx context.Context, formats strfmt.Registr
 	return nil
 }
 
-func (m *PostOKBody) contextValidateGo(ctx context.Context, formats strfmt.Registry) error {
+func (m *PostOKBody) contextValidateGolang(ctx context.Context, formats strfmt.Registry) error {
 
-	for i := 0; i < len(m.Go); i++ {
+	for i := 0; i < len(m.Golang); i++ {
 
-		if m.Go[i] != nil {
-			if err := m.Go[i].ContextValidate(ctx, formats); err != nil {
+		if m.Golang[i] != nil {
+			if err := m.Golang[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("go" + "." + strconv.Itoa(i))
+					return ve.ValidateName("golang" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
-					return ce.ValidateName("go" + "." + strconv.Itoa(i))
+					return ce.ValidateName("golang" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

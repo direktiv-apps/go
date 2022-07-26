@@ -29,19 +29,19 @@ func init() {
   ],
   "swagger": "2.0",
   "info": {
-    "description": "Go runtime",
-    "title": "go",
+    "description": "Go runtime for building applications.",
+    "title": "golang",
     "version": "1.0",
     "x-direktiv-meta": {
       "categories": [
         "build"
       ],
-      "container": "gcr.io/direktiv/apps/go",
-      "issues": "https://github.com/direktiv-apps/go/issues",
+      "container": "gcr.io/direktiv/apps/golang",
+      "issues": "https://github.com/direktiv-apps/golang/issues",
       "license": "[Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0)",
-      "long-description": "This function has the latest version of go installed. Additionally the last 2 older versions are installed as well. The latest version can be called with just the 'go' command. Older versions need to be called explicitly with the version,  e.g. go1.17 build. This function has the following versions installed:\n- 1.18 (default) - 1.17 - 1.16",
+      "long-description": "This function has the latest version of go installed. Additionally the last 2 older versions are installed as well. The latest version can be used with just the 'go' command. Older versions need to be called explicitly with the version,  e.g. go1.17 build. This function has the following versions installed:\n\n- 1.18 (default)\n- 1.17 (go1.17)\n- 1.16 (go1.16)\n\nThe base image is the official 'buster' Golang image on docker hub.",
       "maintainer": "[direktiv.io](https://www.direktiv.io) ",
-      "url": "https://github.com/direktiv-apps/go"
+      "url": "https://github.com/direktiv-apps/golang"
     }
   },
   "paths": {
@@ -113,7 +113,7 @@ func init() {
             "schema": {
               "type": "object",
               "properties": {
-                "go": {
+                "golang": {
                   "type": "array",
                   "items": {
                     "type": "object",
@@ -134,7 +134,7 @@ func init() {
               }
             },
             "examples": {
-              "go": [
+              "golang": [
                 {
                   "result": "go version go1.18.3 linux/amd64",
                   "success": true
@@ -168,7 +168,7 @@ func init() {
               "silent": "{{ .Item.Silent }}"
             }
           ],
-          "output": "{\n  \"go\": {{ index . 0 | toJson }}\n}\n"
+          "output": "{\n  \"golang\": {{ index . 0 | toJson }}\n}\n"
         },
         "x-direktiv-errors": {
           "io.direktiv.command.error": "Command execution failed",
@@ -177,15 +177,15 @@ func init() {
         },
         "x-direktiv-examples": [
           {
-            "content": "- id: go\n  type: action\n  action:\n    function: go\n    input: \n      commands:\n      - command: go version",
+            "content": "- id: golang\n  type: action\n  action:\n    function: golang\n    input: \n      commands:\n      - command: go version",
             "title": "Basic"
           },
           {
-            "content": "- id: go\n  type: action\n  action:\n    function: go\n    input: \n      commands:\n      - command: go1.17 version",
+            "content": "- id: golang\n  type: action\n  action:\n    function: golang\n    input: \n      commands:\n      - command: go1.17 version",
             "title": "Run Older Version"
           }
         ],
-        "x-direktiv-function": "functions:\n- id: go\n  image: gcr.io/direktiv/apps/go:1.0\n  type: knative-workflow"
+        "x-direktiv-function": "functions:\n- id: golang\n  image: gcr.io/direktiv/apps/golang:1.0\n  type: knative-workflow"
       },
       "delete": {
         "parameters": [
@@ -246,19 +246,19 @@ func init() {
   ],
   "swagger": "2.0",
   "info": {
-    "description": "Go runtime",
-    "title": "go",
+    "description": "Go runtime for building applications.",
+    "title": "golang",
     "version": "1.0",
     "x-direktiv-meta": {
       "categories": [
         "build"
       ],
-      "container": "gcr.io/direktiv/apps/go",
-      "issues": "https://github.com/direktiv-apps/go/issues",
+      "container": "gcr.io/direktiv/apps/golang",
+      "issues": "https://github.com/direktiv-apps/golang/issues",
       "license": "[Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0)",
-      "long-description": "This function has the latest version of go installed. Additionally the last 2 older versions are installed as well. The latest version can be called with just the 'go' command. Older versions need to be called explicitly with the version,  e.g. go1.17 build. This function has the following versions installed:\n- 1.18 (default) - 1.17 - 1.16",
+      "long-description": "This function has the latest version of go installed. Additionally the last 2 older versions are installed as well. The latest version can be used with just the 'go' command. Older versions need to be called explicitly with the version,  e.g. go1.17 build. This function has the following versions installed:\n\n- 1.18 (default)\n- 1.17 (go1.17)\n- 1.16 (go1.16)\n\nThe base image is the official 'buster' Golang image on docker hub.",
       "maintainer": "[direktiv.io](https://www.direktiv.io) ",
-      "url": "https://github.com/direktiv-apps/go"
+      "url": "https://github.com/direktiv-apps/golang"
     }
   },
   "paths": {
@@ -294,7 +294,7 @@ func init() {
               "$ref": "#/definitions/postOKBody"
             },
             "examples": {
-              "go": [
+              "golang": [
                 {
                   "result": "go version go1.18.3 linux/amd64",
                   "success": true
@@ -328,7 +328,7 @@ func init() {
               "silent": "{{ .Item.Silent }}"
             }
           ],
-          "output": "{\n  \"go\": {{ index . 0 | toJson }}\n}\n"
+          "output": "{\n  \"golang\": {{ index . 0 | toJson }}\n}\n"
         },
         "x-direktiv-errors": {
           "io.direktiv.command.error": "Command execution failed",
@@ -337,15 +337,15 @@ func init() {
         },
         "x-direktiv-examples": [
           {
-            "content": "- id: go\n  type: action\n  action:\n    function: go\n    input: \n      commands:\n      - command: go version",
+            "content": "- id: golang\n  type: action\n  action:\n    function: golang\n    input: \n      commands:\n      - command: go version",
             "title": "Basic"
           },
           {
-            "content": "- id: go\n  type: action\n  action:\n    function: go\n    input: \n      commands:\n      - command: go1.17 version",
+            "content": "- id: golang\n  type: action\n  action:\n    function: golang\n    input: \n      commands:\n      - command: go1.17 version",
             "title": "Run Older Version"
           }
         ],
-        "x-direktiv-function": "functions:\n- id: go\n  image: gcr.io/direktiv/apps/go:1.0\n  type: knative-workflow"
+        "x-direktiv-function": "functions:\n- id: golang\n  image: gcr.io/direktiv/apps/golang:1.0\n  type: knative-workflow"
       },
       "delete": {
         "parameters": [
@@ -395,16 +395,16 @@ func init() {
     "postOKBody": {
       "type": "object",
       "properties": {
-        "go": {
+        "golang": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/postOKBodyGoItems"
+            "$ref": "#/definitions/postOKBodyGolangItems"
           }
         }
       },
       "x-go-gen-location": "operations"
     },
-    "postOKBodyGoItems": {
+    "postOKBodyGolangItems": {
       "type": "object",
       "required": [
         "success",

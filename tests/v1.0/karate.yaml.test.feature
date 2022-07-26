@@ -30,7 +30,7 @@ Scenario: go-latest
 		And match $ ==
 	"""
 	{
-	"go": [
+	"golang": [
 	{
 		"result": "#notnull",
 		"success": true
@@ -63,7 +63,7 @@ Scenario: go-older
 		And match $ ==
 	"""
 	{
-	"go": [
+	"golang": [
 	{
 		"result": "#notnull",
 		"success": true

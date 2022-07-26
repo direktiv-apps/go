@@ -17,9 +17,9 @@ import (
 	"app/restapi/operations"
 )
 
-//go:generate swagger generate server --target ../../app --name Go --spec ../../../swagger.yaml --template-dir /home/jensg/go/src/github.com/direktiv-apps/go/build/templates --principal interface{}
+//go:generate swagger generate server --target ../../app --name Golang --spec ../../../swagger.yaml --template-dir /home/jensg/go/src/github.com/direktiv-apps/golang/build/templates --principal interface{}
 
-func configureFlags(api *operations.GoAPI) {
+func configureFlags(api *operations.GolangAPI) {
 	// api.CommandLineOptionsGroups = []swag.CommandLineOptionsGroup{ ... }
 }
 
@@ -113,7 +113,7 @@ func serveError(rw http.ResponseWriter, r *http.Request, err error) {
 
 }
 
-func configureAPI(api *operations.GoAPI) http.Handler {
+func configureAPI(api *operations.GolangAPI) http.Handler {
 	// configure the api here
 	api.ServeError = serveError
 

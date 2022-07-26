@@ -9,7 +9,7 @@ RUN cd src/ && go mod tidy
 
 RUN cd src && \
     export CGO_LDFLAGS="-static -w -s" && \
-    go build -tags osusergo,netgo -o /application cmd/go-server/main.go; 
+    go build -tags osusergo,netgo -o /application cmd/golang-server/main.go; 
 
 FROM golang:1.18-buster
 

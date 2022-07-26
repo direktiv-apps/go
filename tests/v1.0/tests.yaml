@@ -1,13 +1,13 @@
 url: ""
 functions:
 - type: knative-workflow
-  id: go
-  image: gcr.io/direktiv/apps/go:test
+  id: golang
+  image: gcr.io/direktiv/apps/golang:test
 states:
 - id: state0
   type: action
   action:
-    function: go
+    function: golang
     input:
       commands:
       - command: go version
@@ -15,7 +15,7 @@ states:
 - id: state1
   type: action
   action:
-    function: go
+    function: golang
     input:
       commands:
       - command: go1.17 version

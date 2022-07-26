@@ -1,14 +1,14 @@
 swagger: "2.0"
 info:
-  description: Go runtime for building applications
-  title: go
+  description: Go runtime for building applications.
+  title: golang
   version: "1.0"
   x-direktiv-meta:
-    container: gcr.io/direktiv/apps/go
+    container: gcr.io/direktiv/apps/golang
     maintainer: |-
       [direktiv.io](https://www.direktiv.io) 
-    issues: https://github.com/direktiv-apps/go/issues
-    url: https://github.com/direktiv-apps/go  
+    issues: https://github.com/direktiv-apps/golang/issues
+    url: https://github.com/direktiv-apps/golang  
     categories:
     - build
     license: |-
@@ -18,9 +18,13 @@ info:
       The latest version can be used with just the 'go' command. Older versions need to be called explicitly with the version, 
       e.g. go1.17 build. This function has the following versions installed:
 
+
       - 1.18 (default)
+
       - 1.17 (go1.17)
+      
       - 1.16 (go1.16)
+
 
       The base image is the official 'buster' Golang image on docker hub.
 
@@ -94,26 +98,25 @@ paths:
       # direktiv code generation is configured here
       x-direktiv-function: |-
         functions:
-        - id: go
-          image: gcr.io/direktiv/apps/go:1.0
+        - id: golang
+          image: gcr.io/direktiv/apps/golang:1.0
           type: knative-workflow
       x-direktiv-examples:
-        # ADD MORE EXAMPLES HERE
         - title: Basic
           content: |-
-            - id: go
+            - id: golang
               type: action
               action:
-                function: go
+                function: golang
                 input: 
                   commands:
                   - command: go version
         - title: Run Older Version
           content: |-
-            - id: go
+            - id: golang
               type: action
               action:
-                function: go
+                function: golang
                 input: 
                   commands:
                   - command: go1.17 version
@@ -127,7 +130,7 @@ paths:
           continue: '{{ .Item.Continue }}'
         output: |
           {
-            "go": {{ index . 0 | toJson }}
+            "golang": {{ index . 0 | toJson }}
           }
       x-direktiv-errors:
         io.direktiv.command.error: Command execution failed
@@ -137,13 +140,14 @@ paths:
         200:
           description: List of executed commands.
           examples:
-            go:
+            golang:
             - result: go version go1.18.3 linux/amd64
               success: true
+
           schema:
             type: object
             properties:
-              go:
+              golang:
                 type: array
                 items:
                   type: object

@@ -23,13 +23,13 @@ func main() {
 		log.Fatalln(err)
 	}
 
-	api := operations.NewGoAPI(swaggerSpec)
+	api := operations.NewGolangAPI(swaggerSpec)
 	server := restapi.NewServer(api)
 	defer server.Shutdown()
 
 	parser := flags.NewParser(server, flags.Default)
-	parser.ShortDescription = "go"
-	parser.LongDescription = "Go runtime"
+	parser.ShortDescription = "golang"
+	parser.LongDescription = "Go runtime for building applications."
 	server.ConfigureFlags()
 	for _, optsGroup := range api.CommandLineOptionsGroups {
 		_, err := parser.AddGroup(optsGroup.ShortDescription, optsGroup.LongDescription, optsGroup.Options)
