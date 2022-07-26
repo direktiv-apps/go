@@ -1,0 +1,21 @@
+url: ""
+functions:
+- type: knative-workflow
+  id: go
+  image: gcr.io/direktiv/apps/go:test
+states:
+- id: state0
+  type: action
+  action:
+    function: go
+    input:
+      commands:
+      - command: go version
+  transition: state1
+- id: state1
+  type: action
+  action:
+    function: go
+    input:
+      commands:
+      - command: go1.17 version
