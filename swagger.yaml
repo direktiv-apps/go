@@ -26,7 +26,7 @@ info:
       - 1.16 (go1.16)
 
 
-      The base image is the official 'buster' Golang image on docker hub.
+      The base image is the official 'buster' Golang image on Docker hub.
 
 consumes:
 - application/json
