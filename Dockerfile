@@ -16,6 +16,8 @@ FROM golang:1.18-buster
 RUN go install golang.org/dl/go1.17@latest && go1.17 download
 RUN go install golang.org/dl/go1.16@latest && go1.16 download
 
+RUN apt-get update && apt-get install zip -y
+
 # DON'T CHANGE BELOW 
 COPY --from=build /application /bin/application
 
