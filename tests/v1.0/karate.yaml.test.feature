@@ -27,7 +27,7 @@ Scenario: go-latest
 	"""
 	When method POST
 	Then status 200
-		And match $ ==
+	And match $ ==
 	"""
 	{
 	"golang": [
@@ -60,7 +60,7 @@ Scenario: go-older
 	"""
 	When method POST
 	Then status 200
-		And match $ ==
+	And match $ ==
 	"""
 	{
 	"golang": [

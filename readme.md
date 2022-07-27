@@ -20,7 +20,7 @@ This function has the latest version of go installed. Additionally the last 2 ol
 - 1.17 (go1.17)
 - 1.16 (go1.16)
 
-The base image is the official 'buster' Golang image on docker hub.
+The base image is the official 'buster' Golang image on Docker hub.
 
 ### Example(s)
   #### Function Configuration
