@@ -5,7 +5,7 @@ Go runtime for building applications.
 
 ---
 - #### Categories: build
-- #### Image: gcr.io/direktiv/apps/golang 
+- #### Image: direktiv.azurecr.io/functions/golang 
 - #### License: [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0)
 - #### Issue Tracking: https://github.com/direktiv-apps/golang/issues
 - #### URL: https://github.com/direktiv-apps/golang
@@ -27,7 +27,7 @@ The base image is the official 'buster' Golang image on Docker hub.
 ```yaml
 functions:
 - id: golang
-  image: gcr.io/direktiv/apps/golang:1.0
+  image: direktiv.azurecr.io/functions/golang:1.0
   type: knative-workflow
 ```
    #### Basic

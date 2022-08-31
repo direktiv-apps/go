@@ -4,7 +4,7 @@ info:
   title: golang
   version: "1.0"
   x-direktiv-meta:
-    container: gcr.io/direktiv/apps/golang
+    container: direktiv.azurecr.io/functions/golang
     maintainer: |-
       [direktiv.io](https://www.direktiv.io) 
     issues: https://github.com/direktiv-apps/golang/issues
@@ -99,7 +99,7 @@ paths:
       x-direktiv-function: |-
         functions:
         - id: golang
-          image: gcr.io/direktiv/apps/golang:1.0
+          image: direktiv.azurecr.io/functions/golang:1.0
           type: knative-workflow
       x-direktiv-examples:
         - title: Basic
@@ -122,15 +122,20 @@ paths:
                   - command: go1.17 version
       x-direktiv:  
         cmds:
+        - action: exec
+          exec: cp -Rf /root/sdk .
+          print: false
+          silent: true
         - action: foreach
           loop: .Commands
           exec: '{{ .Item.Command }}'
           silent: '{{ .Item.Silent }}'
           print: '{{ .Item.Print }}'
           continue: '{{ .Item.Continue }}'
+          env: ["GOROOT={{ .DirektivDir }}"]
         output: |
           {
-            "golang": {{ index . 0 | toJson }}
+            "golang": {{ index . 1 | toJson }}
           }
       x-direktiv-errors:
         io.direktiv.command.error: Command execution failed

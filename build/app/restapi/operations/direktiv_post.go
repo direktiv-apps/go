@@ -3,6 +3,7 @@ package operations
 import (
 	"context"
 	"fmt"
+	"strings"
 	"sync"
 
 	"github.com/direktiv/apps/go/pkg/apps"
@@ -84,7 +85,40 @@ func PostDirektivHandle(params PostParams) middleware.Responder {
 	responses = append(responses, ret)
 
 	// if foreach returns an error there is no continue
-	cont = false
+	//
+	// default we do not continue
+	cont = convertTemplateToBool("<no value>", accParams, false)
+	// cont = convertTemplateToBool("<no value>", accParams, true)
+	//
+
+	if err != nil && !cont {
+
+		errName := cmdErr
+
+		// if the delete function added the cancel tag
+		ci, ok := sm.Load(*params.DirektivActionID)
+		if ok {
+			cinfo, ok := ci.(*ctxInfo)
+			if ok && cinfo.cancelled {
+				errName = "direktiv.actionCancelled"
+				err = fmt.Errorf("action got cancel request")
+			}
+		}
+
+		return generateError(errName, err)
+	}
+
+	paramsCollector = append(paramsCollector, ret)
+	accParams.Commands = paramsCollector
+
+	ret, err = runCommand1(ctx, accParams, ri)
+
+	responses = append(responses, ret)
+
+	// if foreach returns an error there is no continue
+	//
+	// cont = false
+	//
 
 	if err != nil && !cont {
 
@@ -107,7 +141,7 @@ func PostDirektivHandle(params PostParams) middleware.Responder {
 	accParams.Commands = paramsCollector
 
 	s, err := templateString(`{
-  "golang": {{ index . 0 | toJson }}
+  "golang": {{ index . 1 | toJson }}
 }
 `, responses)
 	if err != nil {
@@ -127,14 +161,47 @@ func PostDirektivHandle(params PostParams) middleware.Responder {
 	return NewPostOK().WithPayload(resp)
 }
 
+// exec
+func runCommand0(ctx context.Context,
+	params accParams, ri *apps.RequestInfo) (map[string]interface{}, error) {
+
+	ir := make(map[string]interface{})
+	ir[successKey] = false
+
+	at := accParamsTemplate{
+		*params.Body,
+		params.Commands,
+		params.DirektivDir,
+	}
+
+	cmd, err := templateString(`cp -Rf /root/sdk .`, at)
+	if err != nil {
+		ri.Logger().Infof("error executing command: %v", err)
+		ir[resultKey] = err.Error()
+		return ir, err
+	}
+	cmd = strings.Replace(cmd, "\n", "", -1)
+
+	silent := convertTemplateToBool("<no value>", at, false)
+	print := convertTemplateToBool("<no value>", at, true)
+	output := ""
+
+	envs := []string{}
+
+	return runCmd(ctx, cmd, envs, output, silent, print, ri)
+
+}
+
+// end commands
+
 // foreach command
-type LoopStruct0 struct {
+type LoopStruct1 struct {
 	accParams
 	Item        interface{}
 	DirektivDir string
 }
 
-func runCommand0(ctx context.Context,
+func runCommand1(ctx context.Context,
 	params accParams, ri *apps.RequestInfo) ([]map[string]interface{}, error) {
 
 	var cmds []map[string]interface{}
@@ -145,7 +212,7 @@ func runCommand0(ctx context.Context,
 
 	for a := range params.Body.Commands {
 
-		ls := &LoopStruct0{
+		ls := &LoopStruct1{
 			params,
 			params.Body.Commands[a],
 			params.DirektivDir,
@@ -166,6 +233,8 @@ func runCommand0(ctx context.Context,
 		output := ""
 
 		envs := []string{}
+		env0, _ := templateString(`GOROOT={{ .DirektivDir }}`, ls)
+		envs = append(envs, env0)
 
 		r, err := runCmd(ctx, cmd, envs, output, silent, print, ri)
 		if err != nil {
