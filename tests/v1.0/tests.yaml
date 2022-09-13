@@ -2,7 +2,7 @@ url: ""
 functions:
 - type: knative-workflow
   id: golang
-  image: direktiv.azurecr.io/functions/golang:test
+  image: gcr.io/direktiv/functions/golang:test
 states:
 - id: state0
   type: action

@@ -36,7 +36,7 @@ func init() {
       "categories": [
         "build"
       ],
-      "container": "direktiv.azurecr.io/functions/golang",
+      "container": "gcr.io/direktiv/functions/golang",
       "issues": "https://github.com/direktiv-apps/golang/issues",
       "license": "[Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0)",
       "long-description": "This function has the latest version of go installed. Additionally the last 2 older versions are installed as well. The latest version can be used with just the 'go' command. Older versions need to be called explicitly with the version,  e.g. go1.17 build. This function has the following versions installed:\n\n- 1.18 (default)\n- 1.17 (go1.17)\n- 1.16 (go1.16)\n\nThe base image is the official 'buster' Golang image on Docker hub.",
@@ -161,7 +161,9 @@ func init() {
           "cmds": [
             {
               "action": "exec",
-              "exec": "cp -Rf /root/sdk ."
+              "exec": "cp -Rf /root/sdk .",
+              "print": false,
+              "silent": true
             },
             {
               "action": "foreach",
@@ -192,7 +194,7 @@ func init() {
             "title": "Run Older Version"
           }
         ],
-        "x-direktiv-function": "functions:\n- id: golang\n  image: direktiv.azurecr.io/functions/golang:1.0\n  type: knative-workflow"
+        "x-direktiv-function": "functions:\n- id: golang\n  image: gcr.io/direktiv/functions/golang:1.0\n  type: knative-workflow"
       },
       "delete": {
         "parameters": [
@@ -260,7 +262,7 @@ func init() {
       "categories": [
         "build"
       ],
-      "container": "direktiv.azurecr.io/functions/golang",
+      "container": "gcr.io/direktiv/functions/golang",
       "issues": "https://github.com/direktiv-apps/golang/issues",
       "license": "[Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0)",
       "long-description": "This function has the latest version of go installed. Additionally the last 2 older versions are installed as well. The latest version can be used with just the 'go' command. Older versions need to be called explicitly with the version,  e.g. go1.17 build. This function has the following versions installed:\n\n- 1.18 (default)\n- 1.17 (go1.17)\n- 1.16 (go1.16)\n\nThe base image is the official 'buster' Golang image on Docker hub.",
@@ -328,7 +330,9 @@ func init() {
           "cmds": [
             {
               "action": "exec",
-              "exec": "cp -Rf /root/sdk ."
+              "exec": "cp -Rf /root/sdk .",
+              "print": false,
+              "silent": true
             },
             {
               "action": "foreach",
@@ -359,7 +363,7 @@ func init() {
             "title": "Run Older Version"
           }
         ],
-        "x-direktiv-function": "functions:\n- id: golang\n  image: direktiv.azurecr.io/functions/golang:1.0\n  type: knative-workflow"
+        "x-direktiv-function": "functions:\n- id: golang\n  image: gcr.io/direktiv/functions/golang:1.0\n  type: knative-workflow"
       },
       "delete": {
         "parameters": [

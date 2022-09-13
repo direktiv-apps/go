@@ -182,8 +182,8 @@ func runCommand0(ctx context.Context,
 	}
 	cmd = strings.Replace(cmd, "\n", "", -1)
 
-	silent := convertTemplateToBool("<no value>", at, false)
-	print := convertTemplateToBool("<no value>", at, true)
+	silent := convertTemplateToBool("true", at, false)
+	print := convertTemplateToBool("false", at, true)
 	output := ""
 
 	envs := []string{}

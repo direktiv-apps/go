@@ -4,7 +4,7 @@ info:
   title: golang
   version: "1.0"
   x-direktiv-meta:
-    container: direktiv.azurecr.io/functions/golang
+    container: gcr.io/direktiv/functions/golang
     maintainer: |-
       [direktiv.io](https://www.direktiv.io) 
     issues: https://github.com/direktiv-apps/golang/issues
@@ -99,7 +99,7 @@ paths:
       x-direktiv-function: |-
         functions:
         - id: golang
-          image: direktiv.azurecr.io/functions/golang:1.0
+          image: gcr.io/direktiv/functions/golang:1.0
           type: knative-workflow
       x-direktiv-examples:
         - title: Basic
