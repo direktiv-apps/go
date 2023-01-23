@@ -2,6 +2,7 @@ package operations
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"strings"
 	"sync"
@@ -242,6 +243,31 @@ func runCommand1(ctx context.Context,
 		output := ""
 
 		envs := []string{}
+
+		envTempl, err := templateString(`[
+{{- range $index, $element := .Item.Envs }}
+{{- if $index}},{{- end}}
+"{{ $element.Name }}={{ $element.Value }}"
+{{- end }}
+]
+`, ls, params.DirektivDir)
+		if err != nil {
+			ir := make(map[string]interface{})
+			ir[successKey] = false
+			ir[resultKey] = err.Error()
+			cmds = append(cmds, ir)
+			continue
+		}
+		var addEnvs []string
+		err = json.Unmarshal([]byte(envTempl), &addEnvs)
+		if err != nil {
+			ir := make(map[string]interface{})
+			ir[successKey] = false
+			ir[resultKey] = err.Error()
+			cmds = append(cmds, ir)
+			continue
+		}
+		envs = append(envs, addEnvs...)
 
 		workingDir, err := templateString(``,
 			ls, params.DirektivDir)
