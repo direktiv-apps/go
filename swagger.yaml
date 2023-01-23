@@ -132,7 +132,7 @@ paths:
           silent: '{{ .Item.Silent }}'
           print: '{{ .Item.Print }}'
           continue: '{{ .Item.Continue }}'
-          env: ["GOROOT={{ .DirektivDir }}"]
+          # env: ["GOROOT={{ .DirektivDir }}"]
         output: |
           {
             "golang": {{ index . 1 | toJson }}

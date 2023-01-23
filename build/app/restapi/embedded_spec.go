@@ -168,9 +168,6 @@ func init() {
             {
               "action": "foreach",
               "continue": "{{ .Item.Continue }}",
-              "env": [
-                "GOROOT={{ .DirektivDir }}"
-              ],
               "exec": "{{ .Item.Command }}",
               "loop": ".Commands",
               "print": "{{ .Item.Print }}",
@@ -337,9 +334,6 @@ func init() {
             {
               "action": "foreach",
               "continue": "{{ .Item.Continue }}",
-              "env": [
-                "GOROOT={{ .DirektivDir }}"
-              ],
               "exec": "{{ .Item.Command }}",
               "loop": ".Commands",
               "print": "{{ .Item.Print }}",
