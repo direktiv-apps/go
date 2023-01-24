@@ -11,10 +11,10 @@ RUN cd src && \
     export CGO_LDFLAGS="-static -w -s" && \
     go build -tags osusergo,netgo -o /application cmd/golang-server/main.go; 
 
-FROM golang:1.18-buster
+FROM golang:1.19-buster
 
+RUN go install golang.org/dl/go1.18@latest && go1.18 download
 RUN go install golang.org/dl/go1.17@latest && go1.17 download
-RUN go install golang.org/dl/go1.16@latest && go1.16 download
 
 RUN apt-get update && apt-get install zip -y
 

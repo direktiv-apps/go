@@ -1,5 +1,5 @@
 
-# golang 1.0
+# golang 1.1
 
 Go runtime for building applications.
 
@@ -16,9 +16,9 @@ Go runtime for building applications.
 
 This function has the latest version of go installed. Additionally the last 2 older versions are installed as well. The latest version can be used with just the 'go' command. Older versions need to be called explicitly with the version,  e.g. go1.17 build. This function has the following versions installed:
 
-- 1.18 (default)
+- 1.19 (default)
+- 1.18 (go1.18)
 - 1.17 (go1.17)
-- 1.16 (go1.16)
 
 The base image is the official 'buster' Golang image on Docker hub.
 
@@ -27,7 +27,7 @@ The base image is the official 'buster' Golang image on Docker hub.
 ```yaml
 functions:
 - id: golang
-  image: gcr.io/direktiv/functions/golang:1.0
+  image: gcr.io/direktiv/functions/golang:1.1
   type: knative-workflow
 ```
    #### Basic
@@ -81,7 +81,7 @@ functions:
 ```json
 [
   {
-    "result": "go version go1.18.3 linux/amd64",
+    "result": "go version go1.19.3 linux/amd64",
     "success": true
   }
 ]
